@@ -20,14 +20,12 @@ namespace AppUserAuthentication.Access.Repositories
     public class UserRepository<T> : IUserRepository<T> where T : AppUser
     {
         private readonly UserManager<T> _userManager;
-        private readonly ILogger<UserRepository<T>> _logger;
         private readonly IJwtHandler _jwtHandler;
         private readonly IRefreshTokenGenerator _refreshTokenGenerator;
 
-        public UserRepository(UserManager<T> userManager, IJwtHandler jwtHandler, IRefreshTokenGenerator refreshTokenGenerator, ILogger<UserRepository<T>> logger)
+        public UserRepository(UserManager<T> userManager, IJwtHandler jwtHandler, IRefreshTokenGenerator refreshTokenGenerator)
         {
             _userManager = userManager;
-            _logger = logger;
             _jwtHandler = jwtHandler;
             _refreshTokenGenerator = refreshTokenGenerator;
         }
@@ -43,7 +41,6 @@ namespace AppUserAuthentication.Access.Repositories
                     .WithIdentityErrors(identityResult.Errors)
                     .Build();
                 
-                _logger.LogError($"Errors creating ApplicationUser for: {user.Email} with errors: " + result.GetErrorsAsString());
                 return result;
             }
             
@@ -104,29 +101,13 @@ namespace AppUserAuthentication.Access.Repositories
         /// <inheritdoc cref="IUserRepository{T}.RefreshToken"/>
         public async Task<IUserActionResult> RefreshToken(string jwt, string refreshToken)
         {
-            ClaimsPrincipal principal;
-            try
-            {
-                //get the principal
-                principal = _jwtHandler.GetPrincipalFromExpiredToken(jwt);
-            }
-            catch (SecurityException)
-            {
-                return _defaultTokenRefreshErrors; 
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "Error occurred while getting the principal " + 
-                                    $"for token: {jwt} and refresh token: {refreshToken}");
-                return _defaultTokenRefreshErrors; 
-            }
-            
+            //get the principal
+            var principal = _jwtHandler.GetPrincipalFromExpiredToken(jwt);;
+
             //check if the email in the claim is null, if it is an error occurred.
             var email = principal.FindFirstValue(ClaimTypes.Email);
             if (email == null) {
-                _logger.LogError("Email claim was null, claims: " +
-                                 $"{string.Join(", Error: ", principal.Claims.Select(x => $"Type: {x.Type}, Value: {x.Value}"))}");
-                return _defaultTokenRefreshErrors;
+                throw new NullReferenceException("Email was null");
             }
             
             //find the user by email and their refresh tokens
