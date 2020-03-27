@@ -4,3 +4,15 @@ AppUserAuthentication/.idea/
 AppUserAuthentication/obj/
 
 AppUserAuthentication/bin/
+
+JwtAuthentication/.idea/
+
+JwtAuthentication/AppUserAuthentication/.idea/
+
+JwtAuthentication/AppUserAuthentication/bin/
+
+JwtAuthentication/AppUserAuthentication/obj/
+
+JwtAuthentication/AppUserAuthenticationTest/bin/
+
+JwtAuthentication/AppUserAuthenticationTest/obj/

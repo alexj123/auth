@@ -33,7 +33,7 @@ namespace AppUserAuthentication.Access.Actions
         /// </summary>
         /// <param name="errors">the errors</param>
         /// <returns>this</returns>
-        public DefaultUserActionResultBuilder WithErrors(IEnumerable<DefaultError> errors)
+        public DefaultUserActionResultBuilder WithErrors(IList<DefaultError> errors)
         {
             _defaultUserActionResult.Errors = errors;
             return this;
@@ -46,7 +46,7 @@ namespace AppUserAuthentication.Access.Actions
         /// <returns>this</returns>
         public DefaultUserActionResultBuilder AddError(string msg)
         {
-            _defaultUserActionResult.Errors.Append(new DefaultError(msg));
+            _defaultUserActionResult.Errors.Add(new DefaultError(msg));
             return this;
         }
         
@@ -59,7 +59,7 @@ namespace AppUserAuthentication.Access.Actions
         /// <returns>this</returns>
         public DefaultUserActionResultBuilder WithIdentityErrors(IEnumerable<IdentityError> errors)
         {
-            _defaultUserActionResult.Errors = errors.Select(c => new DefaultError(c.Description));
+            _defaultUserActionResult.Errors = errors.Select(c => new DefaultError(c.Description)).ToList();
             return this;
         }
 

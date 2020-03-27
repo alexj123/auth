@@ -37,11 +37,9 @@ namespace AppUserAuthentication.Access.Repositories
 
             if (identityResult.Errors.Any())
             {
-                var result = new DefaultUserActionResultBuilder()
+                return new DefaultUserActionResultBuilder()
                     .WithIdentityErrors(identityResult.Errors)
                     .Build();
-                
-                return result;
             }
             
             //Generate tokens for the user

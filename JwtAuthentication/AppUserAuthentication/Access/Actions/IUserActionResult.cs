@@ -17,7 +17,7 @@ namespace AppUserAuthentication.Access.Actions
         /// <summary>
         /// IEnumerable that holds all errors that occurred during the action.
         /// </summary>
-        public IEnumerable<DefaultError> Errors { get; set;}
+        public IList<DefaultError> Errors { get; set;}
         
         /// <summary>
         /// A JWT from an action.
@@ -46,15 +46,10 @@ namespace AppUserAuthentication.Access.Actions
         /// </summary>
         public bool Succeeded { get; set; }
 
-        private IEnumerable<DefaultError> _errors;
         /// <summary>
         /// IEnumerable that holds all errors that occurred during the action.
         /// </summary>
-        public IEnumerable<DefaultError> Errors
-        {
-            get => _errors ?? new List<DefaultError>();
-            set => _errors = value;
-        }
+        public IList<DefaultError> Errors { get; set; } = new List<DefaultError>();
 
         /// <summary>
         /// A JWT, can be null of none is returned.

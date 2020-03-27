@@ -111,7 +111,7 @@ namespace AppUserAuthentication.TokenGeneration
         /// <returns>a list of claims</returns>
         public static List<Claim> GetDefaultClaims(string firstName, string email)
         {
-            return new List<Claim>
+            return firstName == null || email == null ? null : new List<Claim>
             {
                 new Claim(ClaimTypes.Email, email),
                 new Claim(ClaimTypes.Name, firstName)

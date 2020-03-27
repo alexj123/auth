@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUserAuthentication", "AppUserAuthentication\AppUserAuthentication.csproj", "{3C2D0B84-42DC-4BEE-93E2-E42C3F0B9DD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppUserAuthenticationTest", "AppUserAuthenticationTest\AppUserAuthenticationTest.csproj", "{1B295F43-0542-499E-B52F-DA1F882C121A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C2D0B84-42DC-4BEE-93E2-E42C3F0B9DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C2D0B84-42DC-4BEE-93E2-E42C3F0B9DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C2D0B84-42DC-4BEE-93E2-E42C3F0B9DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C2D0B84-42DC-4BEE-93E2-E42C3F0B9DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B295F43-0542-499E-B52F-DA1F882C121A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B295F43-0542-499E-B52F-DA1F882C121A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B295F43-0542-499E-B52F-DA1F882C121A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B295F43-0542-499E-B52F-DA1F882C121A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
