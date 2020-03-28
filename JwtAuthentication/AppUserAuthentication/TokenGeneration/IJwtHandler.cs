@@ -24,9 +24,11 @@ namespace AppUserAuthentication.TokenGeneration
         
         /// <summary>
         /// Gets the <see cref="ClaimsPrincipal"/> from a jwt.
+        ///
+        /// Can be null!
         /// </summary>
         /// <param name="token">the token to get the principal from</param>
-        /// <returns>A <see cref="ClaimsPrincipal"/></returns>
+        /// <returns>A <see cref="ClaimsPrincipal"/> or null if it does not exist</returns>
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
     }
 
@@ -73,8 +75,10 @@ namespace AppUserAuthentication.TokenGeneration
         }
         
         /// <inheritdoc cref="IJwtHandler.GetPrincipalFromExpiredToken"/>
+        /// This method throws a lot of exceptions, for security reasons these should be caught.
         /// <exception cref="SecurityException">if token is null or empty</exception>
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        #nullable enable
+        public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
         {
             //if invalid token is supplied, return null
             if (string.IsNullOrEmpty(token)) throw new SecurityException("Invalid refresh token");
@@ -95,10 +99,9 @@ namespace AppUserAuthentication.TokenGeneration
             //get the principal belonging to the token
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out var securityToken);
 
-            //TODO: make this return null and make the methods that use this handle null
             if (!(securityToken is JwtSecurityToken jwtSecurityToken) || 
                 !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-                throw new SecurityException("Invalid refresh token");
+                return null;
 
             return principal;
         }

@@ -2,16 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading;
 using System.Threading.Tasks;
-using AppUserAuthentication.Access.Actions;
 using AppUserAuthentication.Access.Repositories;
 using AppUserAuthentication.Models;
-using AppUserAuthentication.Models.Identity;
 using AppUserAuthentication.TokenGeneration;
 using AppUserAuthenticationTest.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MockQueryable.Moq;
@@ -20,6 +16,9 @@ using Xunit;
 
 namespace AppUserAuthenticationTest
 {
+    /// <summary>
+    /// Test class for <see cref="UserRepository{T}"/>.
+    /// </summary>
     public class UserRepositoryTest
     {
         private readonly UserRepository<TestAppUser> _userRepository;
@@ -35,6 +34,8 @@ namespace AppUserAuthenticationTest
             _userRepository = new UserRepository<TestAppUser>(userManager, _mockDefaultJwtHandler.Object, new DefaultRefreshTokenGenerator());
         }
 
+    
+        #region createTests
         /// <summary>
         /// Tests if the UserRepository returns a correct result when the correct information is supplied for create.
         /// </summary>
@@ -98,7 +99,9 @@ namespace AppUserAuthenticationTest
             Assert.Equal(expectedErrorMsg, result.Errors[0].Message);
             _mockDefaultJwtHandler.Verify(e => e.Generate(null), Times.Never());
         }
-
+        #endregion
+        
+        #region authenticateTests
         /// <summary>
         /// Tests if the authenticates handles correct input correctly.
         /// </summary>
@@ -167,7 +170,9 @@ namespace AppUserAuthenticationTest
             Assert.Equal(expectedErrorMsg, result.Errors[0].Message);
             _mockUserManager.Verify(e => e.UpdateAsync(It.IsAny<TestAppUser>()), Times.Never);
         }
+        #endregion
         
+        #region refreshTokenTests
         /// <summary>
         /// Tests if the refresh token handles correct input correctly.
         /// </summary>
@@ -320,7 +325,7 @@ namespace AppUserAuthenticationTest
             _mockUserManager.Verify(e => e.UpdateAsync(It.IsAny<TestAppUser>()), Times.Never);
             _mockDefaultJwtHandler.Verify(e => e.Generate(It.IsAny<List<Claim>>()), Times.Never);
         }
-
+        #endregion
         
         /// <summary>
         /// Gets the user manager mock.
