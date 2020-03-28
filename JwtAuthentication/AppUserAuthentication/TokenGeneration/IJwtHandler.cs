@@ -73,6 +73,7 @@ namespace AppUserAuthentication.TokenGeneration
         }
         
         /// <inheritdoc cref="IJwtHandler.GetPrincipalFromExpiredToken"/>
+        /// <exception cref="SecurityException">if token is null or empty</exception>
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
             //if invalid token is supplied, return null
@@ -94,6 +95,7 @@ namespace AppUserAuthentication.TokenGeneration
             //get the principal belonging to the token
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out var securityToken);
 
+            //TODO: make this return null and make the methods that use this handle null
             if (!(securityToken is JwtSecurityToken jwtSecurityToken) || 
                 !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 throw new SecurityException("Invalid refresh token");
