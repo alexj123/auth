@@ -13,7 +13,7 @@ namespace AppUserAuthentication.TokenGeneration
         /// Generates a refresh token.
         /// </summary>
         /// <returns></returns>
-        IRefreshToken Generate();
+        RefreshToken Generate();
     }
     
     /// <summary>
@@ -26,7 +26,7 @@ namespace AppUserAuthentication.TokenGeneration
         private const int ExpDays = 5;
         
         /// <inheritdoc cref="IRefreshTokenGenerator.Generate"/>
-        public IRefreshToken Generate()
+        public RefreshToken Generate()
         {
             var randomNumber = new byte[32];
             using var rng = RandomNumberGenerator.Create();

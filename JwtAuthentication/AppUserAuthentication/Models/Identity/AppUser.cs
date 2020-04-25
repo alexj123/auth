@@ -25,6 +25,6 @@ namespace AppUserAuthentication.Models.Identity
         /// <summary>
         /// List of refresh tokens belonging to the user.
         /// </summary>
-        public IList<IRefreshToken> RefreshTokens { get; set; } = new List<IRefreshToken>();
+        public IList<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
     }
 }

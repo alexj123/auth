@@ -185,7 +185,7 @@ namespace AppUserAuthenticationTest
                 Email = "test@test.com",
                 UserName = "username",
                 FirstName = "Test",
-                RefreshTokens = new List<IRefreshToken> {new RefreshToken {Token = "refresh", 
+                RefreshTokens = new List<RefreshToken> {new RefreshToken {Token = "refresh", 
                     Expiration = new DateTimeOffset(DateTime.Now.AddDays(100)).ToUnixTimeSeconds()} }
             };
             var listOfUsers = new List<TestAppUser> {testUser};
@@ -229,7 +229,7 @@ namespace AppUserAuthenticationTest
                 Email = "test@test.com",
                 UserName = "username",
                 FirstName = "Test",
-                RefreshTokens = new List<IRefreshToken> {new RefreshToken {Token = "refresh", 
+                RefreshTokens = new List<RefreshToken> {new RefreshToken {Token = "refresh", 
                     Expiration = new DateTimeOffset(DateTime.Now.AddDays(daysToAdd)).ToUnixTimeSeconds()} }
             };
             var listOfUsers = new List<TestAppUser> {testUser};
@@ -270,7 +270,7 @@ namespace AppUserAuthenticationTest
                 Email = "test@test.com",
                 UserName = "username",
                 FirstName = "Test",
-                RefreshTokens = new List<IRefreshToken> {new RefreshToken {Token = "refresh", 
+                RefreshTokens = new List<RefreshToken> {new RefreshToken {Token = "refresh", 
                     Expiration = new DateTimeOffset(DateTime.Now.AddDays(100)).ToUnixTimeSeconds()} }
             };
             var listOfUsers = new List<TestAppUser> {testUser};
@@ -299,7 +299,7 @@ namespace AppUserAuthenticationTest
                 Email = "test@test.com",
                 UserName = "username",
                 FirstName = "Test",
-                RefreshTokens = new List<IRefreshToken> {new RefreshToken {Token = "refresh", 
+                RefreshTokens = new List<RefreshToken> {new RefreshToken {Token = "refresh", 
                     Expiration = new DateTimeOffset(DateTime.Now.AddDays(100)).ToUnixTimeSeconds()} }
             };
             var listOfUsers = new List<TestAppUser> {testUser};
