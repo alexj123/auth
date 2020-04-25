@@ -30,9 +30,6 @@ namespace AppUserAuthentication
         public static IServiceCollection AddDefaultJwtAuthentication<TUserAuthenticationService>(this IServiceCollection services, 
             TokenValidationParameters parameters) where TUserAuthenticationService : class, IUserAuthenticationService
         {
-            services.AddScoped<IJwtHandler, DefaultJwtHandler>();
-            services.AddScoped<IRefreshTokenGenerator, DefaultRefreshTokenGenerator>();
-
             services.Configure<CookiePolicyOptions>(cookiePolicyOptions =>
             {
                 cookiePolicyOptions.CheckConsentNeeded = context => true;
@@ -61,6 +58,8 @@ namespace AppUserAuthentication
                 };
             }).AddCookie();
 
+            services.AddScoped<IJwtHandler, DefaultJwtHandler>();
+            services.AddScoped<IRefreshTokenGenerator, DefaultRefreshTokenGenerator>();
             services.AddScoped<IUserAuthenticationService, TUserAuthenticationService>();
             
             return services;
@@ -81,8 +80,6 @@ namespace AppUserAuthentication
         public static IServiceCollection AddDefaultJwtDbContext<TAppUser, TDbContext>(this IServiceCollection services,
             string connectionString) where TAppUser : AppUser where TDbContext : AbstractAppDbContext<TAppUser>
         {
-            services.AddScoped<IUserRepository<TAppUser>, UserRepository<TAppUser>>();
-
             services.AddDbContext<TDbContext>(builder =>
                 builder.UseNpgsql(connectionString));
             
@@ -95,6 +92,8 @@ namespace AppUserAuthentication
                 identityOptions.Password.RequireNonAlphanumeric = false;
                 identityOptions.Password.RequiredLength = 6;
             }).AddEntityFrameworkStores<TDbContext>();
+
+            services.AddScoped<IUserRepository<TAppUser>, UserRepository<TAppUser>>();
 
             return services;
         }
