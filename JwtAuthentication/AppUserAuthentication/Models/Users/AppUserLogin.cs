@@ -7,7 +7,7 @@ namespace AppUserAuthentication.Models.Users
     ///
     /// This should be extended and used when attempting to log in.
     /// </summary>
-    public abstract class AbstractAppUserLogin : IUser
+    public class AppUserLogin : IUser
     {
         /// <summary>
         /// The email of a user.

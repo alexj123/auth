@@ -5,34 +5,31 @@ using AppUserAuthentication.Models.Users;
 namespace AppUserAuthentication
 {
     /// <summary>
-    /// An interface of a UserService.
-    ///
-    /// This service: authenticates, creates a user.
+    /// An interface for a UserService.
     /// </summary>
-    public interface IUserAuthenticationService<in T, in TF> where T : AbstractAppUserLogin where TF : AbstractAppUserCreate
+    public interface IUserAuthenticationService
     {
         /// <summary>
-        /// Authenticates the user and returns a <see cref="IUserActionResult"/>.
-        /// 
+        /// Authenticates the user.
         /// </summary>
-        /// <param name="userLogin">the user login supplied</param>
-        /// <returns>Action result, containing JWT and RefreshToken</returns>
-        Task<IUserActionResult> Authenticate(T userLogin);
+        /// <param name="userLogin">The UserLogin object.</param>
+        /// <returns>A Task containing an <see cref="IUserActionResult"/>.</returns>
+        Task<IUserActionResult> Authenticate(AppUserLogin userLogin);
 
         /// <summary>
-        /// Creates the user and returns a <see cref="IUserActionResult"/>.
-        /// 
+        /// Creates the user.
         /// </summary>
-        /// <param name="userCreate">the user create details supplied</param>
-        /// <returns>Action result, containing JWT and RefreshToken</returns>
-        Task<IUserActionResult> Create(TF userCreate);
+        /// <param name="userCreate">The UserCreate object.</param>
+        /// <typeparam name="TUserCreate">The type representing a <see cref="AbstractAppUserCreate"/>.</typeparam>
+        /// <returns>A Task containing an <see cref="IUserActionResult"/>.</returns>
+        Task<IUserActionResult> Create<TUserCreate>(TUserCreate userCreate) where TUserCreate : AbstractAppUserCreate;
 
         /// <summary>
-        /// Refreshes the JWT using the RefreshToken and returns a <see cref="IUserActionResult"/>.
+        /// Refreshes the Jwt using the RefreshToken.
         /// </summary>
-        /// <param name="jwt">the jwt</param>
-        /// <param name="refreshToken">the refresh token</param>
-        /// <returns>Action result, containing new JWT and new RefreshToken</returns>
+        /// <param name="jwt">The Jwt.</param>
+        /// <param name="refreshToken">The refresh token.</param>
+        /// <returns>A Task containing an <see cref="IUserActionResult"/>.</returns>
         Task<IUserActionResult> Refresh(string jwt, string refreshToken);
     }
 }
