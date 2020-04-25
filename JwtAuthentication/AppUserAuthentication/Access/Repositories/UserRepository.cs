@@ -97,10 +97,16 @@ namespace AppUserAuthentication.Access.Repositories
             new DefaultUserActionResultBuilder().AddError("Invalid token").Build();
 
         /// <inheritdoc cref="IUserRepository{T}.RefreshToken"/>
+        /// <exception cref="ArgumentNullException">if email claim is null.</exception>
+        /// <exception cref="SecurityException">if jwt is null or empty</exception>
         public async Task<IUserActionResult> RefreshToken(string jwt, string refreshToken)
         {
             //get the principal
-            var principal = _jwtHandler.GetPrincipalFromExpiredToken(jwt);;
+            var principal = _jwtHandler.GetPrincipalFromExpiredToken(jwt);
+            if (principal == null)
+            {
+                return _defaultTokenRefreshErrors;
+            }
 
             //check if the email in the claim is null, if it is an error occurred.
             var email = principal.FindFirstValue(ClaimTypes.Email);
@@ -126,7 +132,7 @@ namespace AppUserAuthentication.Access.Repositories
 
             return new DefaultUserActionResultBuilder()
                 .Success()
-                .WithJwt(jwt)
+                .WithJwt(newJwt)
                 .WithRefreshToken(newRefreshToken.Token)
                 .Build();
         }
