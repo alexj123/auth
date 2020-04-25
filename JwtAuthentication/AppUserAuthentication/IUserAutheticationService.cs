@@ -20,9 +20,8 @@ namespace AppUserAuthentication
         /// Creates the user.
         /// </summary>
         /// <param name="userCreate">The UserCreate object.</param>
-        /// <typeparam name="TUserCreate">The type representing a <see cref="AbstractAppUserCreate"/>.</typeparam>
         /// <returns>A Task containing an <see cref="IUserActionResult"/>.</returns>
-        Task<IUserActionResult> Create<TUserCreate>(TUserCreate userCreate) where TUserCreate : AbstractAppUserCreate;
+        Task<IUserActionResult> Create(AppUserCreate userCreate);
 
         /// <summary>
         /// Refreshes the Jwt using the RefreshToken.

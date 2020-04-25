@@ -25,7 +25,8 @@ namespace AppUserAuthentication
         /// </remarks>
         /// <param name="services">The services available in your application.</param>
         /// <param name="parameters">The <see cref="TokenValidationParameters"/> for the JwtBearer.</param>
-        /// <typeparam name="TUserAuthenticationService">The type representing an implementation of <see cref="IUserAuthenticationService"/>.</typeparam>
+        /// <typeparam name="TUserAuthenticationService">The type representing an implementation of
+        /// <see cref="IUserAuthenticationService"/>.</typeparam>
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddDefaultJwtAuthentication<TUserAuthenticationService>(this IServiceCollection services, 
             TokenValidationParameters parameters) where TUserAuthenticationService : class, IUserAuthenticationService

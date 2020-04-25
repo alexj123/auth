@@ -5,7 +5,7 @@ namespace AppUserAuthentication.Models.Users
     /// <summary>
     /// Class for creating a user.
     /// </summary>
-    public abstract class AbstractAppUserCreate : IUser
+    public class AppUserCreate : IUser
     {
         /// <summary>
         /// The username of a user.
