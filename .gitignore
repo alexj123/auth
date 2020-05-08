@@ -18,3 +18,7 @@ JwtAuthentication/AppUserAuthenticationTest/bin/
 JwtAuthentication/AppUserAuthenticationTest/obj/
 
 JwtAuthentication/builds/
+
+JwtAuthentication/.vs/JwtAuthentication/v16/
+
+JwtAuthentication/.vs/JwtAuthentication/DesignTimeBuild/
