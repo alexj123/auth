@@ -40,6 +40,10 @@ namespace AppUserAuthentication.TokenGeneration
         private readonly IConfiguration _config;
         private const int ExpMinutes = 30;
         
+        /// <summary>
+        /// Constructs this object.
+        /// </summary>
+        /// <param name="config">The config used to with jwt specific fields.</param>
         public DefaultJwtHandler(IConfiguration config)
         {
             _config = config;

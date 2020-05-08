@@ -29,7 +29,10 @@ namespace AppUserAuthentication.Models
         [Required]
         public long Expiration { get; set; }
 
-        /// <inheritdoc cref="IRefreshToken.IsExpired"/>
+        /// <summary>
+        /// Checks whether this token is expired.
+        /// </summary>
+        /// <returns>A bool.</returns>
         public bool IsExpired()
         {
             return new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds() >= Expiration;

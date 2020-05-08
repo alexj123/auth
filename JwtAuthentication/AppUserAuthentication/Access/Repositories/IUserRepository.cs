@@ -32,6 +32,13 @@ namespace AppUserAuthentication.Access.Repositories
         /// <param name="email">the email</param>
         /// <returns>A user</returns>
         public Task<T> FindByEmail(string email);
+        
+        /// <summary>
+        /// Finds a user by username.
+        /// </summary>
+        /// <param name="username">the username.</param>
+        /// <returns>A user</returns>
+        public Task<T> FindByUsername(string username);
 
         /// <summary>
         /// Refreshes the jwt using the RefreshToken.

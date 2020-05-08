@@ -15,6 +15,10 @@ namespace AppUserAuthentication.Middleware.Authentication
         private readonly RequestDelegate _next;
         private const string Bearer = "bearer";
 
+        /// <summary>
+        /// Constructs this middleware
+        /// </summary>
+        /// <param name="next">The next requestDelegate.</param>
         public JwtSetterMiddleware(RequestDelegate next)
         {
             _next = next;

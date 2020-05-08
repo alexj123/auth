@@ -11,6 +11,9 @@ namespace AppUserAuthentication.Access.Actions
     {
         private readonly DefaultUserActionResult _defaultUserActionResult;
         
+        /// <summary>
+        /// Constructs a new builder.
+        /// </summary>
         public DefaultUserActionResultBuilder()
         {
             _defaultUserActionResult = new DefaultUserActionResult();

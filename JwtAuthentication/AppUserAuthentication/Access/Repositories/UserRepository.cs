@@ -23,6 +23,12 @@ namespace AppUserAuthentication.Access.Repositories
         private readonly IJwtHandler _jwtHandler;
         private readonly IRefreshTokenGenerator _refreshTokenGenerator;
 
+        /// <summary>
+        /// Constructs a new repository.
+        /// </summary>
+        /// <param name="userManager">The user manager to handle IdentityUsers.</param>
+        /// <param name="jwtHandler">The jwt handler to generate and refresh tokens.</param>
+        /// <param name="refreshTokenGenerator">The refresh token handler to generate refresh tokens.</param>
         public UserRepository(UserManager<T> userManager, IJwtHandler jwtHandler, IRefreshTokenGenerator refreshTokenGenerator)
         {
             _userManager = userManager;
@@ -30,7 +36,7 @@ namespace AppUserAuthentication.Access.Repositories
             _refreshTokenGenerator = refreshTokenGenerator;
         }
 
-        /// <inheritdoc cref="IUserRepository{T}.Create"/>
+        /// <inheritdoc />
         public async Task<IUserActionResult> Create(T user, string password)
         {
             var identityResult = await _userManager.CreateAsync(user, password);
@@ -57,7 +63,7 @@ namespace AppUserAuthentication.Access.Repositories
                 .Build();
         }
 
-        /// <inheritdoc cref="IUserRepository{T}.Authenticate"/>
+        /// <inheritdoc />
         public async Task<IUserActionResult> Authenticate(T user, string password)
         {
             var identityResult = await _userManager.CheckPasswordAsync(user, password);
@@ -84,10 +90,16 @@ namespace AppUserAuthentication.Access.Repositories
                 .Build();
         }
 
-        /// <inheritdoc cref="IUserRepository{T}.FindByEmail"/>
+        /// <inheritdoc />
         public async Task<T> FindByEmail(string email)
         {
             return await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email);
+        }
+
+        /// <inheritdoc />
+        public async Task<T> FindByUsername(string username)
+        {
+            return await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == username);
         }
 
         /// <summary>
