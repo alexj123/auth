@@ -8,9 +8,19 @@
         <Title>DefaultJwtAuthentication</Title>
         <Authors>Alex J</Authors>
         <Description>Default implementation for jwt authentication</Description>
-        <PackageReleaseNotes>First release</PackageReleaseNotes>
+        <PackageReleaseNotes>* Improves documentation for several methods.
+* Adds a FindByUsername method to IUserRepository to allow finding a user by their username.
+* Adds XML documentation to the build.
+
+</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RepositoryUrl>https://github.com/alexj123/auth</RepositoryUrl>
+        <PackageProjectUrl></PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>jwt, identitycore, aspnetcore, authentication</PackageTags>
+        <FileVersion>1.0.1.0</FileVersion>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
